@@ -1,0 +1,100 @@
+<!-- login.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Auth Demo</title>
+
+    <!-- Firebase SDK scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+    <!-- Firebase UI script -->
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f2ef;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+        }
+
+        #navbar {
+            background-color: #0077b5;
+            padding: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        #navbar h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        #firebaseui-auth-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            margin-top: 60px; /* Adjusted margin to create space below the fixed navbar */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div id="navbar">
+        <img src="linkedin-logo.png" alt="LinkedIn Logo" height="40">
+        <h1>Welcome to LinkedIn</h1>
+    </div>
+
+    <!-- Firebase UI container -->
+    <div id="firebaseui-auth-container"></div>
+
+    <!-- Firebase UI scripts -->
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyAEIdrEM0jAZ-RZ3_8JFixesPGtoywuBTA",
+            authDomain: "biju-linkedin.firebaseapp.com",
+            projectId: "biju-linkedin",
+            storageBucket: "biju-linkedin.appspot.com",
+            messagingSenderId: "368865517513",
+            appId: "1:368865517513:web:e27de342e6a400d341d218",
+            measurementId: "G-3GL0BVDFGX"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        var uiConfig = {
+            signInSuccessUrl: 'http://localhost:8000', // Redirect URL after successful sign-in
+            signInOptions: [
+                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                firebase.auth.EmailAuthProvider.PROVIDER_ID
+            ],
+            signInFlow: 'popup'
+        };
+
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+        ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
+
+</body>
+</html>

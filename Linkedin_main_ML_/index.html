@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Clone</title>
+    <link rel="stylesheet" href="style.css">
+
+
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
+
+
+
+<script>
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAEIdrEM0jAZ-RZ3_8JFixesPGtoywuBTA",
+    authDomain: "biju-linkedin.firebaseapp.com",
+    projectId: "biju-linkedin",
+    storageBucket: "biju-linkedin.appspot.com",
+    messagingSenderId: "368865517513",
+    appId: "1:368865517513:web:e27de342e6a400d341d218",
+    measurementId: "G-3GL0BVDFGX"
+};
+
+firebase.initializeApp(firebaseConfig);
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/firebaseui@7.1.1/dist/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/firebaseui@7.1.1/dist/firebaseui.css" />
+
+<script>
+    firebase.auth().onAuthStateChanged(user => {
+        if (!user) {
+            window.location.href = '/'; // Redirect to the login page if not authenticated
+        }
+    });
+</script>
+    
+</head>
+<body>
+
+
+    <header>
+        <img src="logo.png" alt="LinkedIn Logo">
+    </header>
+    
+    <div id="firebaseui-auth-container"></div>
+
+    <h1>LinkedIn Clone</h1>
+    <form id="searchForm" onsubmit="event.preventDefault(); search()">
+        <label for="query">Search for Jobs or Users:</label>
+        <input type="text" id="query" name="query" required>
+        <button type="submit">Search</button>
+    </form>
+    <div id="results"></div>
+
+    
+<div id="messaging">
+    <div class="messaging-header">
+        <img src="profile-pic.jpg" alt="Profile Picture">
+        <h2>Messaging</h2>
+    </div>
+    <div id="chat-container">
+       
+    </div>
+    <div class="message-input-container">
+        <textarea id="messageInput" placeholder="Type your message..."></textarea>
+        <button id="sendMessageBtn" onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+      
+</body>
+</html>
